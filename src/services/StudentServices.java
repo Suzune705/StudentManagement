@@ -5,13 +5,16 @@ import src.model.Students;
 import src.util.InvalidUserInputException;
 import src.util.Validator;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class StudentServices implements IStudentServices {
 
     Scanner sc = new Scanner(System.in);
-
+    Students students = new Students();
+    HashMap<String, Students> mapSV = new HashMap<>();
     // the list includes all students
     @Override
     public List<Students> studentMainList() {
@@ -140,7 +143,7 @@ public class StudentServices implements IStudentServices {
                 System.out.println(i.getMessage());
             }
         }
-        Students students = new Students(id, newName, age, nameClass, gpa, phone, address);
+        students = new Students(id, newName, age, nameClass, gpa, phone, address);
         String confirm = sc.nextLine();
         if (confirmAddStudent(confirm)) {
             System.out.println("Do you want to add new student into Main List ? <Yes> or <No>");
@@ -171,4 +174,72 @@ public class StudentServices implements IStudentServices {
         });
     }
 
+    @Override
+    public void updateStudentByID(String id) {
+        boolean found = false ;
+        Students studentFounded = null ;
+        for(Students s : studentMainList()){
+            mapSV.put(s.getStudentID(), s);
+        }
+        for(Map.Entry<String, Students> entry : mapSV.entrySet()){
+            String idFound = entry.getKey();
+            if(idFound.equalsIgnoreCase(id)){
+                System.out.println("founded Student ");
+                found = true;
+                studentFounded = entry.getValue();
+            }
+        }
+        if(found){
+            System.out.println("Enter a field you want update  :");
+            System.out.println("---------------------Name--------------------");
+            System.out.println("---------------------Age---------------------");
+            System.out.println("--------------------Class--------------------");
+            System.out.println("--------------------GPA-----------------------");
+            System.out.println("-----------------PhoneNumber------------------");
+            System.out.println("------------------Address--------------------");
+            System.out.println("---------------------Exit-------------------");
+            String field = sc.nextLine().toLowerCase().trim();
+            switch (field){
+                case "name" :
+                    System.out.print("Enter newName : ");
+                    String newName = sc.nextLine() ;
+                    studentFounded.setStudentName(newName);
+                    System.out.println("update name student successfully");
+                    break;
+                case "age" :
+                    System.out.print("Enter newAge :");
+                    int newAge = sc.nextInt();
+                    sc.nextLine(); // remove space
+                    studentFounded.setStudentAge(newAge);
+                    break;
+                case "class":
+                    System.out.print("Enter newClass");
+                    String newClass = sc.nextLine();
+                    studentFounded.setStudentClass(newClass);
+                    System.out.println("update class student done");
+                    break;
+                case "gpa":
+                    System.out.print("Enter newGPA");
+                    double newGpa = sc.nextDouble();
+                    sc.nextLine();
+                    studentFounded.setStudentGPA(newGpa);
+                    System.out.println("update gpa student done!!");
+                    break;
+                case "phone" :
+                    System.out.print("Enter newPhone");
+                    String newPhone = sc.nextLine();
+                    studentFounded.setStudentPhoneNumber(newPhone);
+                    System.out.println("update phone student done!!!");
+                    break ;
+                case "address":
+                    System.out.print("Enter newAddress");
+                    String newAddress = sc.nextLine();
+                    studentFounded.setStudentAddress(newAddress);
+                    System.out.println("update address student done!!");
+                    break;
+                case "exit" :
+                    break;
+           }
+        }
+    }
 }

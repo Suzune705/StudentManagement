@@ -5,16 +5,14 @@ import src.model.Students;
 
 import java.io.File;
 
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class StudentController {
     public static Scanner sc = new Scanner(System.in);
-    Students s;
 
     public static void controller() {
-        File file = new File("src/data/StudentInformation.txt");
         StudentServices studentServices = new StudentServices();
-
         int choice;
         do {
             System.out.println("-------------------Menu------------------");
@@ -23,7 +21,7 @@ public class StudentController {
             System.out.println("3. Add a student ");
             System.out.println("4. Display Student Information From Main list");
             System.out.println("5. Remove student by id");
-
+            System.out.println("6. Update student by id");
             System.out.println("11. Exit ");
             System.out.print("Enter your choice : ");
             choice = sc.nextInt();
@@ -52,8 +50,13 @@ public class StudentController {
                     studentServices.RemoveStudentID(id );
                     break;
                 case 6 :
-                    System.out.println("6. Update specific student");
-
+                    System.out.println("6. Update Student By ID ");
+                    System.out.println("Enter id of student to update ");
+                    String idUpdate = sc.nextLine();
+                    studentServices.updateStudentByID(idUpdate);
+                    break;
+                case 8 :
+                    System.out.println("exit");
                     break;
             }
         } while (choice != 8);

@@ -13,4 +13,5 @@ public interface IStudentServices {
     boolean confirmAddStudent(String tmp);
     List<Students> studentMainList();
     List<Students> studentListFromFile();
+    void updateStudentByID(String id);
 }
