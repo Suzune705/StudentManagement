@@ -36,18 +36,5 @@ public class LoadStudentInformation {
         if(studentList.isEmpty()) return null ;
         return studentList ;
     }
-    public static void updateNewStudentToFile(Students s){
-        try{
-            File file = new File("src/data/StudentInformation.txt");
-            FileWriter myWriter = new FileWriter(file, true);  // mở file
-            BufferedWriter writer = new BufferedWriter(myWriter); // ghi hết vào ram
-            writer.write(s.toString());
-            writer.newLine();
-            writer.close(); // gặp close thì ghi ra file
-            System.out.println("Write data successfully");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
 }
