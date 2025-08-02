@@ -16,7 +16,7 @@ public class StudentController {
         int choice;
         do {
             System.out.println("-------------------Menu------------------");
-            System.out.println("1. 📊 Check loaded students");
+            System.out.println("1. 📊 Check loaded students into file");
             System.out.println("2. Display Student Information From File");
             System.out.println("3. Add a student ");
             System.out.println("4. Display Student Information From Main list");
@@ -28,7 +28,7 @@ public class StudentController {
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    System.out.println("1. 📊 Check loaded students");
+                    System.out.println("1. 📊 Check loaded students into file ");
                     studentServices.checkLoadStudentInformation();
                     break;
                 case 2:
@@ -47,13 +47,17 @@ public class StudentController {
                     System.out.println("5. Remove student by ID");
                     System.out.print("Enter id of student to remove : ");
                     String id = sc.nextLine();
-                    studentServices.RemoveStudentID(id );
+                    studentServices.RemoveStudentID(id);
                     break;
                 case 6 :
                     System.out.println("6. Update Student By ID ");
                     System.out.println("Enter id of student to update ");
                     String idUpdate = sc.nextLine();
                     studentServices.updateStudentByID(idUpdate);
+                    break;
+                case 7 :
+                    System.out.println("7. Find student who have highest gpa ");
+
                     break;
                 case 8 :
                     System.out.println("exit");

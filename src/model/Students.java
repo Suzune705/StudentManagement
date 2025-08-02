@@ -1,49 +1,20 @@
 package src.model;
 
-public class Students { ;
-    private String studentID ;
-    private String studentName ;
-    private int studentAge ;
+import src.services.IStudentServices;
+
+public class Students extends  Person{ ;
+
+
     private String studentClass ;
     private double studentGPA ;
-    private String studentPhoneNumber ;
-    private String studentAddress ;
-
     public  Students(){
 
     }
-    public Students(String studentID, String studentName, int studentAge, String studentClass, double studentGPA, String studentPhoneNumber, String studentAddress) {
-        this.studentID = studentID;
-        this.studentName = studentName;
-        this.studentAge = studentAge;
-        this.studentClass = studentClass;
-        this.studentGPA = studentGPA;
-        this.studentPhoneNumber = studentPhoneNumber;
-        this.studentAddress = studentAddress;
-    }
 
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public int getStudentAge() {
-        return studentAge;
-    }
-
-    public void setStudentAge(int studentAge) {
-        this.studentAge = studentAge;
+    public Students(String personID, String personName, double age, String phoneNumber , String address , String studentClass, double studentGPA) {
+        super(personID, personName, age, phoneNumber,  address);
+        this.studentClass = studentClass ;
+        this.studentGPA = studentGPA ;
     }
 
     public String getStudentClass() {
@@ -62,22 +33,38 @@ public class Students { ;
         this.studentGPA = studentGPA;
     }
 
-    public String getStudentPhoneNumber() {
-        return studentPhoneNumber;
+    @Override
+    public void setName(String personName) {
+        super.setName(personName);
     }
 
-    public void setStudentPhoneNumber(String studentPhoneNumber) {
-        this.studentPhoneNumber = studentPhoneNumber;
+    @Override
+    public String getName() {
+        return super.getName();
     }
 
-    public String getStudentAddress() {
-        return studentAddress;
+    @Override
+    public void setAge(double age) {
+        super.setAge(age);
     }
 
-    public void setStudentAddress(String studentAddress) {
-        this.studentAddress = studentAddress;
+    @Override
+    public double getAge() {
+        return super.getAge();
     }
-    public String toString(){
-        return this.studentID + "," + this.studentName + "," + this.studentAge + "," + this.studentClass + "," + this.studentGPA + "," + this.studentPhoneNumber + "," + this.studentAddress;
+
+    @Override
+    public String getAddress() {
+        return super.getAddress();
+    }
+
+    @Override
+    public void setAddress(String address) {
+        super.setAddress(address);
+    }
+
+    @Override
+    public String  toString(){
+        return getID() + "," + getName() + "," + getAge() + "," + getPhoneNumber() + "," + getAddress() + "," + getStudentClass() + ","+  getStudentGPA() ;
     }
 }

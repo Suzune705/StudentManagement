@@ -23,11 +23,11 @@ public class LoadStudentInformation {
                 String id = tmp[0];
                 String name = tmp[1];
                 int age = Integer.parseInt(tmp[2]);
-                String studentClass = tmp[3];
-                double gpa = Double.parseDouble(tmp[4]);
-                String phone = tmp[5];
-                String address = tmp[6];
-                Students s = new Students(id, name, age, studentClass, gpa, phone, address);
+                String phoneNumber = tmp[3];
+                String address = tmp[4];
+                String studentClass = tmp[5];
+                double gpa = Double.parseDouble(tmp[6]);
+                Students s = new Students(id, name, age, phoneNumber, address, studentClass, gpa);
                 studentList.add(s);
             }
         } catch (IOException e) {
