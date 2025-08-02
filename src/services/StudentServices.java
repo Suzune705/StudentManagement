@@ -143,7 +143,7 @@ public class StudentServices implements IStudentServices {
                 System.out.println(i.getMessage());
             }
         }
-        students = new Students(id, newName, age, nameClass, gpa, phone, address);
+        students = new Students(id, newName, age, phone, address ,nameClass, gpa);
         String confirm = sc.nextLine();
         if (confirmAddStudent(confirm)) {
             System.out.println("Do you want to add new student into Main List ? <Yes> or <No>");
@@ -179,7 +179,7 @@ public class StudentServices implements IStudentServices {
         boolean found = false ;
         Students studentFounded = null ;
         for(Students s : studentMainList()){
-            mapSV.put(s.getStudentID(), s);
+            mapSV.put(s.getID(), s);
         }
         for(Map.Entry<String, Students> entry : mapSV.entrySet()){
             String idFound = entry.getKey();
@@ -203,14 +203,14 @@ public class StudentServices implements IStudentServices {
                 case "name" :
                     System.out.print("Enter newName : ");
                     String newName = sc.nextLine() ;
-                    studentFounded.setStudentName(newName);
+                    studentFounded.setName(newName);
                     System.out.println("update name student successfully");
                     break;
                 case "age" :
                     System.out.print("Enter newAge :");
                     int newAge = sc.nextInt();
                     sc.nextLine(); // remove space
-                    studentFounded.setStudentAge(newAge);
+                    studentFounded.setAge(newAge);
                     break;
                 case "class":
                     System.out.print("Enter newClass");
@@ -228,13 +228,13 @@ public class StudentServices implements IStudentServices {
                 case "phone" :
                     System.out.print("Enter newPhone");
                     String newPhone = sc.nextLine();
-                    studentFounded.setStudentPhoneNumber(newPhone);
+                    studentFounded.setPhoneNumber(newPhone);
                     System.out.println("update phone student done!!!");
                     break ;
                 case "address":
                     System.out.print("Enter newAddress");
                     String newAddress = sc.nextLine();
-                    studentFounded.setStudentAddress(newAddress);
+                    studentFounded.setAddress(newAddress);
                     System.out.println("update address student done!!");
                     break;
                 case "exit" :
