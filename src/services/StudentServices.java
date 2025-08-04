@@ -5,10 +5,7 @@ import src.model.Students;
 import src.util.InvalidUserInputException;
 import src.util.Validator;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentServices implements IStudentServices {
 
@@ -163,6 +160,25 @@ public class StudentServices implements IStudentServices {
     @Override
     public void RemoveStudentID(String id) {
         StudentRemover.removeStudentByID(id);
+    }
+    // count the number of students in each class base on frequent appearance
+    @Override
+    public void countStudent() {
+        HashMap<String, Integer> map = new HashMap<>();
+        for(Students s : studentMainList()){
+            if (map.containsKey(s.getStudentClass())) {
+                 int tmp = map.remove(s.getStudentClass()); // remove the duplicate value
+                 map.put(s.getStudentClass(), tmp+1); // put removed value with new frequency
+            }
+            else {
+                map.put(s.getStudentClass(), 1); // default class has 1 student
+            }
+        }
+
+        map.forEach((key,value)->{
+            System.out.println("class: " + key + " number: " + value);
+        });
+
     }
 
 // display student from a list having all students
