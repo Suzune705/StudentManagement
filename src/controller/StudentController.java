@@ -56,14 +56,20 @@ public class StudentController {
                     studentServices.updateStudentByID(idUpdate);
                     break;
                 case 7 :
-                    System.out.println("7. Find student who have highest gpa ");
-
+                    System.out.println("7. Count the number of students in each class");
+                    studentServices.countStudent();
                     break;
                 case 8 :
-                    System.out.println("exit");
+                    System.out.println("Calculate the average gpa for each class");
+                    break;
+                case 9 :
+                    System.out.println("List student with the highest gpa");
+                    break;
+                case 10 :
+                    System.out.println("Exit");
                     break;
             }
-        } while (choice != 8);
+        } while (choice != 10);
     }
 
 }
