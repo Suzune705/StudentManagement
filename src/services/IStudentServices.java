@@ -15,6 +15,7 @@ public interface IStudentServices {
     void countStudent();
     void updateStudentByID(String id) ;
 
+    void averageGpaEachClass();
 
     // Check load data
     boolean confirmAddStudent(String tmp);

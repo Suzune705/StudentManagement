@@ -167,8 +167,8 @@ public class StudentServices implements IStudentServices {
         HashMap<String, Integer> map = new HashMap<>();
         for(Students s : studentMainList()){
             if (map.containsKey(s.getStudentClass())) {
-                 int tmp = map.remove(s.getStudentClass()); // remove the duplicate value
-                 map.put(s.getStudentClass(), tmp+1); // put removed value with new frequency
+                 int tmp = map.remove(s.getStudentClass()); // remove the duplicate value and return the key of removed value
+                 map.put(s.getStudentClass(), tmp + 1); // put removed value with new frequency
             }
             else {
                 map.put(s.getStudentClass(), 1); // default class has 1 student
@@ -181,7 +181,27 @@ public class StudentServices implements IStudentServices {
 
     }
 
-// display student from a list having all students
+    @Override
+    public void averageGpaEachClass() {
+        Map<String, Map<String, Double>> outer = new HashMap<>();
+        for(Students s : studentMainList()){
+           outer.putIfAbsent(s.getStudentClass(), new HashMap<>()); // if map have not StudentClass , add it into map and empty child map
+           Map<String, Double> inner = outer.get(s.getStudentClass()); //  refer the same child map to memory area that parent map points to
+           inner.put("sum", inner.getOrDefault("sum",0.0) + s.getStudentGPA());
+           inner.put("count", inner.getOrDefault("count", 0.0) + 1);
+        }
+
+        for(Map.Entry<String, Map<String, Double>> entry : outer.entrySet()){
+            String classcode = entry.getKey();
+            double sum = entry.getValue().get("sum");
+            double cnt = entry.getValue().get(("count"));
+            double avg = sum/cnt ;
+            System.out.printf("%s -> GPA TB = %.2f%n", classcode, avg);
+        }
+    }
+
+
+    // display student from a list having all students
 
     @Override
     public void displayStudentInformationFromMainList() {

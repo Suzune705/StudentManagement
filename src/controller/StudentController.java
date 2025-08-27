@@ -9,6 +9,7 @@ import java.sql.SQLOutput;
 import java.util.*;
 
 public class StudentController {
+
     public static Scanner sc = new Scanner(System.in);
 
     public static void controller() {
@@ -22,6 +23,11 @@ public class StudentController {
             System.out.println("4. Display Student Information From Main list");
             System.out.println("5. Remove student by id");
             System.out.println("6. Update student by id");
+            System.out.println("7. Count the number of students in each class");
+            System.out.println("8. Calculate the average gpa for each class");
+            System.out.println("9. List student with the highest gpa");
+            System.out.println("10. Sort student by name ");
+            System.out.println("10. Sort student by descending Gpa");
             System.out.println("11. Exit ");
             System.out.print("Enter your choice : ");
             choice = sc.nextInt();
@@ -61,15 +67,21 @@ public class StudentController {
                     break;
                 case 8 :
                     System.out.println("Calculate the average gpa for each class");
+                    studentServices.averageGpaEachClass();
                     break;
                 case 9 :
                     System.out.println("List student with the highest gpa");
                     break;
                 case 10 :
+                    System.out.println("Sort student by name ");
+                    break;
+                case 11 :
+                    System.out.println("Sort student by descending Gpa");
+                case 12 :
                     System.out.println("Exit");
                     break;
             }
-        } while (choice != 10);
+        } while (choice != 12);
     }
 
 }
