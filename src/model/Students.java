@@ -2,8 +2,7 @@ package src.model;
 
 import src.services.IStudentServices;
 
-public class Students extends  Person{ ;
-
+public class Students extends Person{
 
     private String studentClass ;
     private double studentGPA ;

@@ -159,7 +159,11 @@ public class StudentServices implements IStudentServices {
     //    remove student by id
     @Override
     public void RemoveStudentID(String id) {
-        StudentRemover.removeStudentByID(id);
+        if(StudentManager.getInstance().getStudents().removeIf(s -> s.getID().equalsIgnoreCase(id))){
+            System.out.println("Student removed ");
+        } else {
+            System.out.println("Student id not found");
+        }
     }
     // count the number of students in each class base on frequent appearance
     @Override
@@ -180,7 +184,7 @@ public class StudentServices implements IStudentServices {
         });
 
     }
-
+    // Case 8
     @Override
     public void averageGpaEachClass() {
         Map<String, Map<String, Double>> outer = new HashMap<>();
@@ -198,6 +202,34 @@ public class StudentServices implements IStudentServices {
             double avg = sum/cnt ;
             System.out.printf("%s -> GPA TB = %.2f%n", classcode, avg);
         }
+    }
+
+//    Case 9
+
+    @Override
+    public Students highestGPAStudent() {
+        double gpaMax = 0 ;
+        for(Students s : studentMainList()){
+            if(s.getStudentGPA() > gpaMax){
+                gpaMax = s.getStudentGPA();
+            }
+        }
+        for(Students s : studentMainList()){
+            if(s.getStudentGPA() == gpaMax){
+                return s ;
+            }
+        }
+        return null ;
+    }
+
+//    Case 10
+
+    @Override
+    public void sortStudentByGPA() {
+        studentMainList().sort(
+                Comparator.comparingDouble((Students s) -> s.getStudentGPA()).reversed()
+        );
+        studentMainList().forEach(System.out::println); // method reference
     }
 
 

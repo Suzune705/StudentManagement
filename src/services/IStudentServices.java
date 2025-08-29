@@ -14,8 +14,9 @@ public interface IStudentServices {
     void RemoveStudentID(String id);
     void countStudent();
     void updateStudentByID(String id) ;
-
+    Students highestGPAStudent();
     void averageGpaEachClass();
+    void sortStudentByGPA();
 
     // Check load data
     boolean confirmAddStudent(String tmp);
